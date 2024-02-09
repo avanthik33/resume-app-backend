@@ -20,4 +20,26 @@ router.post("/signup",async(req,res)=>{
   res.json({status:"success"})
 })
 
+
+//signin
+router.post("/signin",async(req,res)=>{
+  let email=req.body.email
+  let inputPassword=req.body.password
+  let data=await usersModel.findOne({email:email})
+  if(!data){
+    return(
+      res.json({status:"no user"})
+    )
+  }
+  let dbPassword=data.password
+  let match=await bcrypt.compare(inputPassword,dbPassword)
+  if(!match){
+    return(
+      res.json({status:"incorrect password"})
+    )
+  }
+  res.json({status:"success"})
+})
+
+
 module.exports=router
