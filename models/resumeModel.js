@@ -2,7 +2,8 @@ const mongoose=require("mongoose")
 
 const resumeModel=new mongoose.Schema({
   userId:{
-    type:mongoose.Schema.Types.ObjectId,ref:"usersCollection",
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"usersCollection",
     required:true
   },
   name:{
