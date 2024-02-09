@@ -9,4 +9,9 @@ router.post("/addresume",async(req,res)=>{
   res.json({status:"success"})
 })
 
+router.post("/viewresume",async(req,res)=>{
+  let data=await resumeModel.find().populate("userId","userName -_id").exec()
+  res.json(data)
+})
+
 module.exports=router
